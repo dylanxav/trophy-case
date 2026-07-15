@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* Enable class-based dark mode toggling (Tailwind v4). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Smooth theme transitions on color-bearing properties. */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Entrance animation used by section panels. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

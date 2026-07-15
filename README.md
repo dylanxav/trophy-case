@@ -1,16 +1,54 @@
-# React + Vite
+# TrophyCase — Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimalist, high-performance web resume built with **React + Vite + Tailwind CSS**.
+Static-compiled and auto-deployed to **GitHub Pages** via GitHub Actions.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Tabbed single-page layout: Welcome · Bio · Skills · Projects · Certifications
+- Light/dark theme toggle (persists to `localStorage`, respects system preference, no flash on load)
+- Responsive, accessible, reduced-motion friendly
+- SEO + social-share meta tags
+- One CI/CD push-to-deploy pipeline
 
-## React Compiler
+## Make it yours
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. **Edit `src/App.jsx`** — the `CONFIG` object at the top is the single source of truth:
+   ```js
+   const CONFIG = {
+     name: 'Dylan',
+     role: 'Systems & Infrastructure',
+     email: 'you@example.com',                              // ← your email
+     github: 'https://github.com/your-username',            // ← your GitHub
+     linkedin: 'https://www.linkedin.com/in/your-username', // ← your LinkedIn
+     resume: 'resume.pdf',                                  // ← put resume.pdf in /public (or '' to hide)
+   };
+   ```
+2. **Add your resume**: drop `resume.pdf` into `public/`. (Set `resume: ''` to hide the button.)
+3. Tweak the `skillGroups`, projects, and certifications sections to taste.
 
-## Expanding the ESLint configuration
+## Local development
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production build → dist/
+npm run preview  # preview the production build
+npm run lint
+```
+
+## Deploy to GitHub Pages
+
+1. Create a GitHub repo and push this project:
+   ```bash
+   git remote add origin https://github.com/<you>/<repo>.git
+   git push -u origin master
+   ```
+2. In the repo: **Settings → Pages → Build and deployment → Source → GitHub Actions**.
+3. Done. Every push to `master`/`main` runs `.github/workflows/deploy.yml`, which builds and
+   publishes. The site goes live at `https://<you>.github.io/<repo>/`.
+
+### Notes on the base path
+- The workflow sets `VITE_BASE=/<repo>/` automatically, so assets resolve correctly on a project site.
+- Using a **user/org site** (`<you>.github.io`) or a **custom domain**? Those serve from `/`, so set
+  `VITE_BASE: /` in `.github/workflows/deploy.yml` instead.
