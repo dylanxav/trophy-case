@@ -51,9 +51,13 @@ const Home = () => (
         My foundation spans across cloud infrastructure, cybersecurity, and network architecture, allowing me to approach
         complex technical problems from multiple angles.
       </p>
-      <div className="flex flex-wrap items-center gap-3 pt-4">
-        <span className="inline-block px-4 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm font-medium rounded-md tracking-wide">
-          Available for Opportunities
+      <div className="flex flex-wrap items-center gap-4 pt-4">
+        <span className="inline-flex items-center gap-2 text-sm font-medium text-emerald-700 dark:text-emerald-400">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75 animate-ping"></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+          </span>
+          Available for opportunities
         </span>
         {CONFIG.resume && (
           <a
